@@ -1,5 +1,5 @@
-const email = 'admin'
-const passoword = '123456'
+const email = 'julio'
+const passoword = 'cesar'
 
 // Import the functions you need from the SDKs you need
 const firebase = require("firebase");

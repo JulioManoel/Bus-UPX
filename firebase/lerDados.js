@@ -21,19 +21,19 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = firebase.firestore();
 
-const consultaFirebase = function consultaFirebase(email, passoword, callback){
+const loginFirebase = function loginFirebase(email, password, callback){
     db.collection("UserAdmin").get().then((querySnapshot) => {
+        let verifica = false
         querySnapshot.forEach((doc) => {
-            if(doc.data().Email == email && doc.data().Passoword == passoword){
-                const verifica = true
-                callback(verifica)
-            }
-            else{
-                const verifica = false
+            if(doc.data().Email == email && doc.data().Password == password){
+                verifica = true
                 callback(verifica)
             }
         });
+        if(verifica == false){
+            callback(verifica)
+        }
     });
 }
 
-module.exports = consultaFirebase
+module.exports = loginFirebase
