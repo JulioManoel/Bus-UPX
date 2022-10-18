@@ -4,15 +4,46 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
+        <title>UPx Bus | Tela Inicial</title>
+        <link rel="stylesheet" href="/public/style/login.css">
     </head>
     <body>
-        <h2>Faça Login</h2>
 
-        <form method="post">
-            <input type="text" name="email">
-            <input type="text" name="password">
-            <input type="submit" name="acao" value="Logar">
-        </form>
+        <header>
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#2">Sobre nós</a></li>
+                    <li><a href="#">Conheça o Sistema</a></li>
+                    <li><a href="#">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="main-content">
+            <div class="login-menu">
+                <div class="login-logo">
+                    <a href="https://facens.br/" target="_blank"><img src="/img/facensLogo.png"></a>
+                </div>
+                <hr>
+                <div class="login-form">
+                    <form method="post">
+                        <input type="text" name="email" placeholder="Insira seu usuário">
+                        <input type="text" name="password" placeholder="Insira sua senha">
+                        <input id="login-btn" type="submit" name="acao" value="ENTRAR">
+                    </form>
+                </div>
+                <div class="login-help"></div>
+                <div id="login-help">
+                    <p><a href="#">Ainda não é cliente ? Registre-se já!</a></p>
+                    <p><a href="#">Esqueceu sua senha ?</a></p>
+                </div>
+                <br><br><br><br><br>
+                <div id="login-rights">
+                    <p>® 2022 All Rights Reserved</p>
+                </div>
+            </div>
+        </section>
+
     </body>
 </html>

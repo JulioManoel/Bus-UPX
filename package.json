@@ -4,6 +4,7 @@
   "description": "Primeiro test",
   "main": "server.js",
   "scripts": {
+    "server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Julio Manoel e João Grilo",

@@ -17,6 +17,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended:true}))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
+app.use('/public', express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, '/views'))
 
 app.post('/',(req,res)=>{
@@ -32,12 +33,36 @@ app.post('/',(req,res)=>{
     })
 })
 
-app.post('/users',(req,res)=>{
+app.post('/relatorio',(req,res)=>{
     loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
         if(verifica == true){
             //Logado com Sucesso!
             req.session.email = req.body.email
-            res.render('users')
+            res.render('relatorio')
+        } else {
+            res.render('login')
+        }
+    })
+})
+
+app.post('/configuracoes',(req,res)=>{
+    loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
+        if(verifica == true){
+            //Logado com Sucesso!
+            req.session.email = req.body.email
+            res.render('configuracoes')
+        } else {
+            res.render('login')
+        }
+    })
+})
+
+app.post('/ajuda',(req,res)=>{
+    loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
+        if(verifica == true){
+            //Logado com Sucesso!
+            req.session.email = req.body.email
+            res.render('ajuda')
         } else {
             res.render('login')
         }
@@ -51,9 +76,26 @@ app.get('/', (req,res)=>{
         res.render('login')
     }
 })
-app.get('/users', (req,res)=>{
+
+app.get('/relatorio', (req,res)=>{
     if(req.session.email){
-        res.render('users')
+        res.render('relatorio')
+    } else{
+        res.render('login')
+    }
+})
+
+app.get('/configuracoes', (req,res)=>{
+    if(req.session.email){
+        res.render('configuracoes')
+    } else{
+        res.render('login')
+    }
+})
+
+app.get('/ajuda', (req,res)=>{
+    if(req.session.email){
+        res.render('ajuda')
     } else{
         res.render('login')
     }
