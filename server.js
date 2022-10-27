@@ -70,11 +70,11 @@ app.post('/ajuda',(req,res)=>{
 })
 
 app.get('/', (req,res)=>{
-    if(req.session.email){
+    // if(req.session.email){
         res.render('dashboard')
-    } else{
-        res.render('login')
-    }
+    // } else{
+        // res.render('login')
+    // }
 })
 
 app.get('/relatorio', (req,res)=>{
@@ -93,7 +93,7 @@ app.get('/configuracoes', (req,res)=>{
     }
 })
 
-app.get('/ajuda', (req,res)=>{
+app.get('/about', (req,res)=>{
     if(req.session.email){
         res.render('ajuda')
     } else{

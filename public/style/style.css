@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../img/background-blur.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.nav-bar {
+    width: 100%;
+}
+
+.nav-bar ul {
+    list-style: none;
+    background-color: #04447C;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-bar li {
+   display: inline-block;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #ffffff;
+    width: 100%;
+    display: block;
+    padding: 25px 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+}
+
+.nav-bar a:hover {
+    color: #2596BE;
+    transition: 0.20s;
+}
+
+.login-menu {
+    background-color: rgba(128, 128, 128, 0.6);
+    margin: 4% 10% 10% 68%;
+    width: 450px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.login-logo {
+    padding: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-logo img {
+    width: 300px;
+    height: 95px;
+}
+
+.login-menu hr {
+    border-color: rgba(0, 0, 0, 0.2);
+    margin: 0% 12% 6% 12%;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    text-align: -webkit-center;
+}
+
+.login-form input {
+    font-family: 'Poppins', sans-serif;
+    margin: 30px;
+    background-color: #f5f5f5;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 0px;
+}
+
+.login-form input::placeholder {
+    text-align: center;
+}
+
+.login-form input:focus {
+    caret-color: #909090;
+    outline: 0;
+}
+
+.login-form input:focus::placeholder {
+    opacity: 0;
+    transition: .2s;
+}
+
+#login-btn {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #2596BE;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    width: 150px;
+    height: 60px;
+    border: 0px;
+}
+
+#login-btn:hover {
+    background-color: #04447C;
+    transition: 0.25s;
+}
+
+#login-btn:active {
+    font-size: 14px;
+}
+
+#login-help {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#login-help a {
+    color: #ffffff;
+    margin: 12px;
+    text-decoration: none;
+}
+
+#login-help a:hover {
+    color: #dedede;
+    transition: .5s;
+}
+
+#login-help p {
+    margin-bottom: 6px;
+}
+
+#login-rights {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+#login-rights:hover {
+    cursor: default;
+}
+
+/*SYSTEM*/
+
+.side-menu {
+    display: flex;
+    height: 890px;
+}
+
+.side-tabs {
+    text-align: center;
+    width: 340px;
+    flex-shrink: 0;
+    background: #2596BE;
+}
+
+.side-logo {
+    margin-top: 20px;
+    background-color: #2596BE;
+    width: 300px;
+    height: 95px;
+}
+
+.tab-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    text-align: left;
+    margin: 40px;
+    display: block;
+    padding-left: 10px;
+    background: #2596BE;
+    color: #f5f5f5;
+    border: none;
+    width: 300px;
+    height: 50px;
+    outline: none;
+    cursor: pointer;
+}
+
+.tab-btn-active {
+    background-color: #f5f5f5;
+    color: #2596BE;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    position: right;
+    transition: 0.3s;
+}
+
+.tab-content {
+    background-color: #DBE9F4;
+    display: none;
+}
+
+.tab-content-active {
+    display: block;
+}
+
+.top-panel {
+    display: flex;
+    margin: 29px;
+}
+
+.panel-content {
+    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+    margin: 40px;
+    width: 300px;
+    height: 200px;
+    display: flex;
+}
+
+#last-child {
+    background-color: #2596BE;
+}
+
+.panel-value {
+    color: #000000;
+    font-size: 44px;
+    margin: 40px 0px 0px 20px;
+}
+
+.panel-description {
+    color: #808080;
+    font-size: 22px;
+    margin: 0px 0px 0px 20px;
+}
+
+.panel-icon {
+    margin: 40px 0px 0px 40px;
+}
+
+#passenger-icon {
+    fill: #2596BE;
+}
+
+#bus-icon {
+    margin: 54px 0px 0px 110px;
+    fill: #2596BE;
+}
+
+#money-icon {
+    margin: -162px 0px 0px 80px;
+    fill: #f5f5f5;
+}
+
+#money-value {
+    color: #f5f5f5;
+}
+
+#money-description {
+    color: #f5f5f5;
+}
+
+.bottom-content {
+    background-color: #f5f5f5;
+    margin: 68px;
+    max-width: 1478px;
+    height: 450px;
+}
+
+.tabela{
+    display: flex;
+}
