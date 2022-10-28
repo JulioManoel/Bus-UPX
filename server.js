@@ -77,28 +77,40 @@ app.get('/', (req,res)=>{
     }
 })
 
-app.get('/relatorio', (req,res)=>{
+app.get('/report', (req,res)=>{
     if(req.session.email){
-        res.render('relatorio')
+        res.render('report')
     } else{
         res.render('login')
     }
 })
 
-app.get('/configuracoes', (req,res)=>{
+app.get('/settings', (req,res)=>{
     if(req.session.email){
-        res.render('configuracoes')
+        res.render('settings')
+    } else{
+        res.render('login')
+    }
+})
+
+app.get('/help', (req,res)=>{
+    if(req.session.email){
+        res.render('help')
     } else{
         res.render('login')
     }
 })
 
 app.get('/about', (req,res)=>{
-    if(req.session.email){
-        res.render('ajuda')
-    } else{
-        res.render('login')
-    }
+    res.render('about')
+})
+
+app.get('/knowing', (req,res)=>{
+    res.render('knowing')
+})
+
+app.get('/contact', (req,res)=>{
+    res.render('contact')
 })
 
 app.listen(port, () => {
