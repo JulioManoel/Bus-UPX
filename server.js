@@ -21,48 +21,47 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, '/views'))
 
 app.post('/',(req,res)=>{
-    loginFirebase(req.body.email, req.body.password, (verifica)=>{
-        //console.log(verifica)
-        if(verifica == true){
+    // loginFirebase(req.body.email, req.body.password, (verifica)=>{
+        // if(verifica == true){
             //Logado com Sucesso!
             req.session.email = req.body.email
             res.render('dashboard')
+        // } else {
+            // res.render('login')
+        // }
+    // })
+})
+
+app.post('/report',(req,res)=>{
+    loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
+        if(verifica == true){
+            //Logado com Sucesso!
+            req.session.email = req.body.email
+            res.render('report')
         } else {
             res.render('login')
         }
     })
 })
 
-app.post('/relatorio',(req,res)=>{
+app.post('/settings',(req,res)=>{
     loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
         if(verifica == true){
             //Logado com Sucesso!
             req.session.email = req.body.email
-            res.render('relatorio')
+            res.render('settings')
         } else {
             res.render('login')
         }
     })
 })
 
-app.post('/configuracoes',(req,res)=>{
+app.post('/help',(req,res)=>{
     loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
         if(verifica == true){
             //Logado com Sucesso!
             req.session.email = req.body.email
-            res.render('configuracoes')
-        } else {
-            res.render('login')
-        }
-    })
-})
-
-app.post('/ajuda',(req,res)=>{
-    loginFirebase(req.body.email, req.body.passoword, (verifica)=>{
-        if(verifica == true){
-            //Logado com Sucesso!
-            req.session.email = req.body.email
-            res.render('ajuda')
+            res.render('help')
         } else {
             res.render('login')
         }

@@ -1,1 +1,89 @@
-<h2>Users</h2>
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UPx Bus</title>
+        <link rel="stylesheet" href="/public/style/style.css">
+        <link rel="stylesheet" href="/public/style/report.css">
+        <script src=""></script>
+    </head>
+    <body>
+        <header>
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">Sobre nós</a></li>
+                    <li><a href="/knowing">Conheça o Sistema</a></li>
+                    <li><a href="/contact">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="side-menu">
+            <div class="side-tabs">
+                <img class="side-logo" src="/public/img/facensLogo.png" alt="Centro Universitário Facens">
+                <button class="tab-btn" tab-value="1">Dashboard</button>
+                <button class="tab-btn tab-btn-active" tab-value="2"><a href="/report">Relatórios</a></button>
+                <button class="tab-btn" tab-value="4"><a href="/help">Ajuda</a></button>
+            </div>
+            <div class="tab-content tab-content-active" content-value="1">
+                <section class="top-panel">
+                    <div class="panel-content" id="btnReceita">
+                        <p class="panel-description">Diario</p>
+                    </div>
+                    <div class="panel-content" id="btnReceita">
+                        <p class="panel-description">Mensal</p>
+                    </div>
+                    <div class="panel-content" id="btnReceita">
+                        <p class="panel-description">Anual</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <div class="popup-wrapper" id="popup">
+            <div class="popup">
+                <div class="popup-close">x</div>
+                <div class="popup-content">
+                    <h2>Parametros</h2>
+                    <form>
+                        <div>
+                            <label>Data Inicial: </label>
+                            <input type="date" id="dataInit">
+                        </div>
+                        <div>
+                            <label>Data Final: </label>
+                            <input type="date" id="dateFin">
+                        </div>
+                        <div>
+                            <label>Exportar: </label>
+                            <select name="exporter">
+                                <option value="excel">Excel</option>
+                                <!--<option value="pdf">PDF</option>-->
+                            </select>
+                        </div>
+                        <div>
+                            <label>Gostaria de Tirar alguma Linha:</label>
+                            <br>
+                            <input type="radio" name="tirarLinha" id="tirarLinhaS" value="sim">
+                            <label>SIM</label>
+                            <input type="radio" name="tirarLinha" id="tirarLinhaN" value="nao">
+                            <label>NÃO</label>
+                        </div>
+                        <div class="selecaoLinhas" id="selecionaLinhas">
+                            <label>Selecione as Linhas</label>
+                            <div id="selecaoLinhas"></div>
+                        </div>
+                        <br>
+                        <input class="popup-submit" type="button" value="Gerar Relatório">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="/public/script/report.js"></script>
+    <script src="https://validacao-estudo-default-rtdb.firebaseio.com/.json?callback=data"></script>
+</html>

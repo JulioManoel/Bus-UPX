@@ -1,25 +1,27 @@
-var dadosOi
 function data(json){
-    var dataAtual = new Date()
-    var dia = dataAtual.getDate()
-    var mes = dataAtual.getMonth() + 1
-    var ano = dataAtual.getFullYear()
-    var dadosDia = json[ano][mes][dia];
-    var passageiros = 0;
-    var contador = 0;
-    var onibus = Object.keys(dadosDia).length;
-    for(var i=0; i<Object.keys(dadosDia).length; i++){
-        passageiros += Object.values(dadosDia)[i].Passageiros
-        contador += Object.values(dadosDia)[i].Contador
-    }
-    var valorPassagem = json.Valor
-    var dinheiro = contador*valorPassagem
-    document.querySelector("#passageiros").innerText = passageiros
-    document.querySelector("#onibus").innerText = onibus
-    document.querySelector("#contador").innerText = contador
-    document.querySelector("#money-value").innerText = dinheiro.toFixed(2)
-    tabela(dadosDia);
-    eventListener(dadosDia, valorPassagem);
+    try{
+        var dataAtual = new Date()
+        var dia = dataAtual.getDate()
+        var mes = dataAtual.getMonth() + 1
+        var ano = dataAtual.getFullYear()
+        var dadosDia = json[ano][mes][dia];
+        var passageiros = 0;
+        var contador = 0;
+        var onibus = Object.keys(dadosDia).length;
+        for(var i=0; i<Object.keys(dadosDia).length; i++){
+            passageiros += Object.values(dadosDia)[i].Passageiros
+            contador += Object.values(dadosDia)[i].Contador
+        }
+        var valorPassagem = json.Valor
+        var dinheiro = contador*valorPassagem
+        document.querySelector("#passageiros").innerText = passageiros
+        document.querySelector("#onibus").innerText = onibus
+        document.querySelector("#contador").innerText = contador
+        document.querySelector("#money-value").innerText = dinheiro.toFixed(2)
+        tabela(dadosDia);
+        eventListener(dadosDia, valorPassagem);
+    } catch {}
+    
 }
 
 function tabela(dadosDia){
@@ -42,7 +44,6 @@ function eventListener(dadosDia, valorPassagem){
     var linhas = document.querySelectorAll(".tabela");
     for (var i = 0; i < linhas.length; i++) {
         linhas[i].addEventListener("click", function (e) {
-            dadosOi = dadosDia
             for(var j=0; j<Object.keys(dadosDia).length; j++){
                 if(Object.values(dadosDia)[j].Linha == this.innerText){
                     var passageiros = Object.values(dadosDia)[j].Passageiros
