@@ -21,15 +21,15 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, '/views'))
 
 app.post('/',(req,res)=>{
-    // loginFirebase(req.body.email, req.body.password, (verifica)=>{
-        // if(verifica == true){
-            //Logado com Sucesso!
+    loginFirebase(req.body.email, req.body.password, (verifica)=>{
+        if(verifica == true){
+            // Logado com Sucesso!
             req.session.email = req.body.email
             res.render('dashboard')
-        // } else {
-            // res.render('login')
-        // }
-    // })
+        } else {
+            res.render('login')
+        }
+    })
 })
 
 app.post('/report',(req,res)=>{

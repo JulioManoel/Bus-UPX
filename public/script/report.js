@@ -1,10 +1,12 @@
-const button = document.querySelector('#btnReceita')
+const buttonDiario = document.querySelector('#btnDiario')
+const buttonMensal = document.querySelector('#btnMensal')
+const buttonAnual = document.querySelector('#btnAnual')
 const popup = document.querySelector('#popup')
 const tirarLinhaS = document.querySelector('#tirarLinhaS');
 const tirarLinhaN = document.querySelector('#tirarLinhaN');
 const selecionaLinhas = document.querySelector('#selecionaLinhas');
 
-var dados;
+var dados, type;
 
 tirarLinhaS.addEventListener('click', () => {
     selecionaLinhas.style.display = 'block'
@@ -14,8 +16,21 @@ tirarLinhaN.addEventListener('click', () => {
     selecionaLinhas.style.display = 'none'
 })
 
-button.addEventListener('click', () => {
+buttonDiario.addEventListener('click', () => {
     popup.style.display = 'block'
+    type = 'diario'
+})
+
+buttonMensal.addEventListener('click', () => {
+    popup.style.display = 'block'
+    type = 'mensal'
+    document.querySelector('#tirar').style.display = 'none'
+})
+
+buttonAnual.addEventListener('click', () => {
+    popup.style.display = 'block'
+    type = 'anual'
+    document.querySelector('#tirar').style.display = 'none'
 })
 
 popup.addEventListener('click', event => {
@@ -103,28 +118,87 @@ function exportExcel(tirarLinha, dateInit, dateFin){
     var dataAntiga = new Date(anoAntigo, mesAntigo-1, diaAntigo)
     var dataNova = new Date(anoNovo, mesNovo-1, diaNovo)
     var arrayLinhas = []
-    arrayLinhas.push(["Data", "Numero da Linha", "Nome da Linha", "Total de Embarque", "Receita"])
-    for(var i=0; i<Object.values(dados).length; i++){
-        var anoJson = Object.values(dados)[i]
-        var ano = Object.keys(dados)[i]
-        for(var j=0; j<Object.values(anoJson).length; j++){
-            var mesJson = Object.values(anoJson)[j]
-            var mes = Object.keys(anoJson)[j]
-            for(var k=0; k<Object.values(mesJson).length; k++){
-                var diaJson = Object.values(mesJson)[k]
-                var dia = Object.keys(mesJson)[k]
-                var date = new Date(ano, mes-1, dia)
-                if(dataAntiga.getTime() <= date.getTime() && dataNova.getTime() >=  date.getTime()){
-                    for(var l=0; l<Object.values(diaJson).length; l++){
-                        var numLinha = Object.keys(diaJson)[l]
-                        var contador = diaJson[numLinha].Contador
-                        var linha = diaJson[numLinha].Linha
-                        var receita = contador * dados.Valor
-                        if(tirarLinha.indexOf(linha) == -1)
-                            arrayLinhas.push([`${dia}/${mes}/${ano}`, numLinha, linha, contador, receita.toFixed(2)])
-                    } 
+    
+    if(type == 'diario') {
+        arrayLinhas.push(["Data", "Numero da Linha", "Nome da Linha", "Total de Embarque", "Receita"])
+        for(var i=0; i<Object.values(dados).length; i++){
+            var anoJson = Object.values(dados)[i]
+            var ano = Object.keys(dados)[i]
+            for(var j=0; j<Object.values(anoJson).length; j++){
+                var mesJson = Object.values(anoJson)[j]
+                var mes = Object.keys(anoJson)[j]
+                for(var k=0; k<Object.values(mesJson).length; k++){
+                    var diaJson = Object.values(mesJson)[k]
+                    var dia = Object.keys(mesJson)[k]
+                    var date = new Date(ano, mes-1, dia)
+                    if(dataAntiga.getTime() <= date.getTime() && dataNova.getTime() >=  date.getTime()){
+                        for(var l=0; l<Object.values(diaJson).length; l++){
+                            var numLinha = Object.keys(diaJson)[l]
+                            var contador = diaJson[numLinha].Contador
+                            var linha = diaJson[numLinha].Linha
+                            var receita = contador * dados.Valor
+                            if(tirarLinha.indexOf(linha) == -1)
+                                arrayLinhas.push([`${dia}/${mes}/${ano}`, numLinha, linha, contador, receita.toFixed(2)])
+                        } 
+                    }
                 }
             }
+        }
+    }
+    else if(type == 'mensal') {
+        arrayLinhas.push(["Meses", "Total de Embarque", "Receita"])
+        for(var i=0; i<Object.values(dados).length; i++){
+            var anoJson = Object.values(dados)[i]
+            var ano = Object.keys(dados)[i]
+            for(var j=0; j<Object.values(anoJson).length; j++){
+                var mesJson = Object.values(anoJson)[j]
+                var mes = Object.keys(anoJson)[j]
+                var contador = 0;
+                var receita = 0
+                for(var k=0; k<Object.values(mesJson).length; k++){
+                    var diaJson = Object.values(mesJson)[k]
+                    var dia = Object.keys(mesJson)[k]
+                    var date = new Date(ano, mes-1, dia)
+                    if(dataAntiga.getTime() <= date.getTime() && dataNova.getTime() >=  date.getTime()){
+                        for(var l=0; l<Object.values(diaJson).length; l++){
+                            var numLinha = Object.keys(diaJson)[l]
+                            contador += diaJson[numLinha].Contador
+                            var linha = diaJson[numLinha].Linha
+                            receita += contador * dados.Valor
+                            
+                        } 
+                    }
+                }
+                arrayLinhas.push([`${mes}/${ano}`, contador, receita.toFixed(2)])
+            }
+        }
+    }
+    else if(type == 'anual') {
+        arrayLinhas.push(["Ano", "Total de Embarque", "Receita"])
+        for(var i=0; i<Object.values(dados).length; i++){
+            var anoJson = Object.values(dados)[i]
+            var ano = Object.keys(dados)[i]
+            var contador = 0;
+            var receita = 0
+            for(var j=0; j<Object.values(anoJson).length; j++){
+                var mesJson = Object.values(anoJson)[j]
+                var mes = Object.keys(anoJson)[j]
+                for(var k=0; k<Object.values(mesJson).length; k++){
+                    var diaJson = Object.values(mesJson)[k]
+                    var dia = Object.keys(mesJson)[k]
+                    var date = new Date(ano, mes-1, dia)
+                    if(dataAntiga.getTime() <= date.getTime() && dataNova.getTime() >=  date.getTime()){
+                        for(var l=0; l<Object.values(diaJson).length; l++){
+                            var numLinha = Object.keys(diaJson)[l]
+                            contador += diaJson[numLinha].Contador
+                            var linha = diaJson[numLinha].Linha
+                            receita += contador * dados.Valor
+                            
+                        } 
+                    }
+                }
+            }
+            arrayLinhas.push([ano, contador, receita.toFixed(2)])
         }
     }
     const CSVString = arrayLinhas.join('\n')
@@ -132,4 +206,5 @@ function exportExcel(tirarLinha, dateInit, dateFin){
     a.href = `data:text/csvcharset=utf-8,${encodeURIComponent(CSVString)}`
     a.download = 'receita.xls'
     a.click()
+    arrayLinhas = []
 }
